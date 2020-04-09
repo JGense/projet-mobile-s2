@@ -1,3 +1,4 @@
+import 'package:colocgame/ui/page/HomePage.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -26,11 +27,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
+  static List<Widget> _widgetOptions = <Widget>[
+    HomePage(key: UniqueKey(), title: 'MyTitle'),
     Text(
       'Index 1: Teams',
       style: optionStyle,
