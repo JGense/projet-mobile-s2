@@ -1,3 +1,25 @@
+import 'package:colocgame/ui/page/RootPage.dart';
+import "package:flutter/material.dart";
+import 'package:colocgame/ui/page/LoginPage.dart';
+
+import 'data/provider/authentication.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+        title: 'Flutter login demo',
+        debugShowCheckedModeBanner: false,
+        theme: new ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: new RootPage(auth: new Auth()));
+  }
+}
+
+/*
 import 'package:colocgame/ui/page/HomePage.dart';
 import 'package:flutter/material.dart';
 
@@ -76,3 +98,4 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     );
   }
 }
+*/

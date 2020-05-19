@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "817408204216",
+    "firebase_url": "https://colocgame.firebaseio.com",
+    "project_id": "colocgame",
+    "storage_bucket": "colocgame.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:817408204216:android:5cc0d64eb31f37cfb1434d",
+        "android_client_info": {
+          "package_name": "master.flutter.colocgame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "817408204216-1vlqdh0kmrmhhph242edq8qrg02vc3f7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXpKlVPS6-ENlE01q3nPi0cHWe5oCzXn0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "817408204216-1vlqdh0kmrmhhph242edq8qrg02vc3f7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
