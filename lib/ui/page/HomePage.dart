@@ -1,4 +1,5 @@
 import 'package:colocgame/data/provider/authentication.dart';
+import 'package:colocgame/ui/page/DashBoardPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -20,10 +21,7 @@ class _HomePageState extends State<HomePage> {
 
   static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Dashboard',
-      style: optionStyle,
-    ),
+    DashBoardPage(),
     Text(
       'Index 1: Teams',
       style: optionStyle,
