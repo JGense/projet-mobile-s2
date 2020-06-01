@@ -22,9 +22,7 @@ class TacheDetails extends StatelessWidget{
             child : Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children : <Widget> [
-                  Image.network(
-                    tache.fields.urlPhoto.stringValue,
-                  ),
+                  tache.fields.urlPhoto == null ? Placeholder() : Image.network(tache.fields.urlPhoto.stringValue,),
                   Divider(),
                   Text("Description: ", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
                   Text(tache.fields.description.stringValue),
