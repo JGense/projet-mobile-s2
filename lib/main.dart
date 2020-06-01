@@ -1,4 +1,5 @@
 import 'package:colocgame/ui/page/RootPage.dart';
+import 'package:colocgame/ui/page/TacheDetails.dart';
 import "package:flutter/material.dart";
 import 'package:colocgame/ui/page/LoginPage.dart';
 
@@ -11,10 +12,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
         title: 'Flutter login demo',
-        debugShowCheckedModeBanner: false,
-        theme: new ThemeData(
+        theme: ThemeData(
+          brightness:  Brightness.light,
           primarySwatch: Colors.blue,
         ),
+        darkTheme: ThemeData(
+            brightness: Brightness.dark,
+            accentColor: Colors.amberAccent
+        ),
+        routes: <String, WidgetBuilder>{
+          TacheDetails.routeName: (BuildContext context) => TacheDetails()
+        },
+        debugShowCheckedModeBanner: false,
         home: new RootPage(auth: new Auth()));
   }
 }

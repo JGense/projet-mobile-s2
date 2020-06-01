@@ -1,5 +1,6 @@
 import 'package:colocgame/data/model/Tache.dart';
 import 'package:colocgame/data/repository/TacheRepository.dart';
+import 'package:colocgame/ui/page/TacheDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -35,12 +36,11 @@ class _tachesPageState extends State<TachesPages> {
                         ButtonBar(
                         children: <Widget>[
                         FlatButton(
-                        child: tache.data[position].fields.isDone.booleanValue ? const Text('REFAIRE LA TACHE') : const Text('TACHE EFFECTUÉ'),
+                        child: const Text('DETAILS DE LA TACHE'),
                         onPressed: () {
-                          Tache tacheModif = tache.data[position];
-                          tacheModif.fields.isDone.booleanValue = !tacheModif.fields.isDone.booleanValue;
-                          _tacheRepository.majTache(tacheModif);
-                          setState(() {});
+
+                          Navigator.pushNamed(context, TacheDetails.routeName,
+                              arguments: {"tache": tache.data[position]});
                           },
                         ),
                         ],
