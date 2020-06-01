@@ -31,50 +31,65 @@ class _tacheFormState extends State<TacheForm> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text("Titre"),
-              TextFormField(
+            TextFormField(
+                maxLines: 1,
+                keyboardType: TextInputType.text,
+                autofocus: false,
                 controller: controllerTitre,
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Please enter some text';
-                  }
-                  return null;
-                },
+                decoration: new InputDecoration(
+                    hintText: 'Titre',
+                    icon: new Icon(
+                      Icons.title,
+                      color: Colors.grey,
+                    )),
+                validator: (value) => value.isEmpty ? 'Please enter some text' : null
               ),
-              Text("Description"),
               TextFormField(
-                controller: controllerDescription,
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Please enter some text';
-                  }
-                  return null;
-                },
+                  maxLines: 1,
+                  keyboardType: TextInputType.text,
+                  autofocus: false,
+                  controller: controllerDescription,
+                  decoration: new InputDecoration(
+                      hintText: 'Description',
+                      icon: new Icon(
+                        Icons.text_fields,
+                        color: Colors.grey,
+                      )),
+                  validator: (value) => value.isEmpty ? 'Please enter some text' : null
               ),
-              Text("Tache récurrente"),
-              Checkbox(value: isRecurrent, onChanged: (bool value) => setState(() => isRecurrent = value)),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: RaisedButton(
-                  onPressed: () {
-                    if (_formKey.currentState.validate()) {
-                      Titre titre = Titre(stringValue: controllerTitre.text);
-                      Titre description = Titre(stringValue: controllerDescription.text);
-                      IsRecurrent recurrent = IsRecurrent(booleanValue: isRecurrent);
-                      IsRecurrent isDone = IsRecurrent(booleanValue: false);
-                      DateFormat dateFormatJ = DateFormat("yyyy-MM-dd");
-                      DateFormat dateFormatH = DateFormat("HH:mm:ss");
-                      DateCreation dateCreation = DateCreation(timestampValue: dateFormatJ.format(DateTime.now()) + "T" + dateFormatH.format(DateTime.now()) + "Z");
-                      Fields fields = Fields(titre: titre, description: description, isRecurrent: recurrent, isDone: isDone, dateCreation: dateCreation, dateRealisation: null);
-                      Future<Response> response = _tacheRepository.postTache(new Tache(fields:fields));
-                      response.then((value) => Navigator.pop(context));
-                    }
-                  },
-                  child: Text('Ajouter la tache'),
-                ),
-              ),
+              Divider(height: 100,),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text("Tâche récurrente"),
+                  Checkbox(value: isRecurrent, onChanged: (bool value) => setState(() => isRecurrent = value)),
+                ],
+              )
             ],
           ),
-        ));
+        ),
+      persistentFooterButtons: <Widget>[
+        ButtonTheme(
+          minWidth: 400,
+          child: RaisedButton(
+            onPressed: () {
+              if (_formKey.currentState.validate()) {
+                Titre titre = Titre(stringValue: controllerTitre.text);
+                Titre description = Titre(stringValue: controllerDescription.text);
+                IsRecurrent recurrent = IsRecurrent(booleanValue: isRecurrent);
+                IsRecurrent isDone = IsRecurrent(booleanValue: false);
+                DateFormat dateFormatJ = DateFormat("yyyy-MM-dd");
+                DateFormat dateFormatH = DateFormat("HH:mm:ss");
+                DateCreation dateCreation = DateCreation(timestampValue: dateFormatJ.format(DateTime.now()) + "T" + dateFormatH.format(DateTime.now()) + "Z");
+                Fields fields = Fields(titre: titre, description: description, isRecurrent: recurrent, isDone: isDone, dateCreation: dateCreation, dateRealisation: null);
+                Future<Response> response = _tacheRepository.postTache(new Tache(fields:fields));
+                response.then((value) => Navigator.pop(context));
+              }
+            },
+            child: Text('Ajouter la tache'),
+          ),
+        )
+      ],
+    );
   }
 }
