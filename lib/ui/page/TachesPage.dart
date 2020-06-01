@@ -1,6 +1,7 @@
 import 'package:colocgame/data/model/Tache.dart';
 import 'package:colocgame/data/repository/TacheRepository.dart';
 import 'package:colocgame/ui/page/TacheDetails.dart';
+import 'package:colocgame/ui/page/TacheForm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -38,7 +39,6 @@ class _tachesPageState extends State<TachesPages> {
                         FlatButton(
                         child: const Text('DETAILS DE LA TACHE'),
                         onPressed: () {
-
                           Navigator.pushNamed(context, TacheDetails.routeName,
                               arguments: {"tache": tache.data[position]});
                           },
@@ -53,7 +53,11 @@ class _tachesPageState extends State<TachesPages> {
                 return CircularProgressIndicator();
               }
             }
-        )
+        ),
+        floatingActionButton: FloatingActionButton(onPressed: (){
+          Navigator.pushNamed(context, TacheForm.routeName);
+        },
+        child: Icon(Icons.add)),
     );
   }
 }

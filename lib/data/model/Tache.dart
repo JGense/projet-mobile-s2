@@ -27,43 +27,55 @@ class Tache {
 }
 
 class Fields {
+  DateCreation dateCreation;
+  IsRecurrent isRecurrent;
   Titre titre;
   Titre description;
-  DateRealisation dateRealisation;
-  IsDone isDone;
+  DateCreation dateRealisation;
+  IsRecurrent isDone;
   Titre urlPhoto;
   Id id;
-  DateRealisation dateCreation;
 
   Fields(
-      {this.titre,
+      {this.dateCreation,
+        this.isRecurrent,
+        this.titre,
         this.description,
         this.dateRealisation,
         this.isDone,
         this.urlPhoto,
-        this.id,
-        this.dateCreation});
+        this.id});
 
   Fields.fromJson(Map<String, dynamic> json) {
+    dateCreation = json['dateCreation'] != null
+        ? new DateCreation.fromJson(json['dateCreation'])
+        : null;
+    isRecurrent = json['isRecurrent'] != null
+        ? new IsRecurrent.fromJson(json['isRecurrent'])
+        : null;
     titre = json['titre'] != null ? new Titre.fromJson(json['titre']) : null;
     description = json['description'] != null
         ? new Titre.fromJson(json['description'])
         : null;
     dateRealisation = json['dateRealisation'] != null
-        ? new DateRealisation.fromJson(json['dateRealisation'])
+        ? new DateCreation.fromJson(json['dateRealisation'])
         : null;
-    isDone =
-    json['isDone'] != null ? new IsDone.fromJson(json['isDone']) : null;
+    isDone = json['isDone'] != null
+        ? new IsRecurrent.fromJson(json['isDone'])
+        : null;
     urlPhoto =
     json['urlPhoto'] != null ? new Titre.fromJson(json['urlPhoto']) : null;
     id = json['id'] != null ? new Id.fromJson(json['id']) : null;
-    dateCreation = json['dateCreation'] != null
-        ? new DateRealisation.fromJson(json['dateCreation'])
-        : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.dateCreation != null) {
+      data['dateCreation'] = this.dateCreation.toJson();
+    }
+    if (this.isRecurrent != null) {
+      data['isRecurrent'] = this.isRecurrent.toJson();
+    }
     if (this.titre != null) {
       data['titre'] = this.titre.toJson();
     }
@@ -82,9 +94,38 @@ class Fields {
     if (this.id != null) {
       data['id'] = this.id.toJson();
     }
-    if (this.dateCreation != null) {
-      data['dateCreation'] = this.dateCreation.toJson();
-    }
+    return data;
+  }
+}
+
+class DateCreation {
+  String timestampValue;
+
+  DateCreation({this.timestampValue});
+
+  DateCreation.fromJson(Map<String, dynamic> json) {
+    timestampValue = json['timestampValue'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['timestampValue'] = this.timestampValue;
+    return data;
+  }
+}
+
+class IsRecurrent {
+  bool booleanValue;
+
+  IsRecurrent({this.booleanValue});
+
+  IsRecurrent.fromJson(Map<String, dynamic> json) {
+    booleanValue = json['booleanValue'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['booleanValue'] = this.booleanValue;
     return data;
   }
 }
@@ -101,38 +142,6 @@ class Titre {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['stringValue'] = this.stringValue;
-    return data;
-  }
-}
-
-class DateRealisation {
-  String timestampValue;
-
-  DateRealisation({this.timestampValue});
-
-  DateRealisation.fromJson(Map<String, dynamic> json) {
-    timestampValue = json['timestampValue'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['timestampValue'] = this.timestampValue;
-    return data;
-  }
-}
-
-class IsDone {
-  bool booleanValue;
-
-  IsDone({this.booleanValue});
-
-  IsDone.fromJson(Map<String, dynamic> json) {
-    booleanValue = json['booleanValue'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['booleanValue'] = this.booleanValue;
     return data;
   }
 }
