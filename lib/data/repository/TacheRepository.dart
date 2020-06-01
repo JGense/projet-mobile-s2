@@ -20,6 +20,23 @@ class TacheRepository {
     }
   }
 
+  Future<List<Tache>> getTachesForDashboard() async {
+    Response response = await TacheProvider().getTaches();
+    if(response.data != null){
+      List data = response.data['documents'];
+      List<Tache> taches = data.map((object) => Tache.fromJson(object)).toList();
+      List<Tache> tachesDashboard = new List<Tache>();
+      taches.forEach((tache){
+        if(!tache.fields.isDone.booleanValue || tache.fields.isRecurrent.booleanValue){
+          tachesDashboard.add(tache);
+        }
+      });
+      return tachesDashboard;
+    } else if(response.statusCode == 204){
+      return null;
+    }
+  }
+
   void majTache(Tache tache) {
     TacheProvider().patchTache(tache);
   }

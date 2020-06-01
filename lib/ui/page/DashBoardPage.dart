@@ -15,21 +15,19 @@ class DashBoardPage extends StatefulWidget {
 }
 
 class _DashBoardPageState extends State<DashBoardPage> {
-
   final _tacheRepository = TacheRepository.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: FutureBuilder(
-            future: _tacheRepository.getTaches(),
+            future: _tacheRepository.getTachesForDashboard(),
             builder: (BuildContext context, AsyncSnapshot<List<Tache>> tache) {
               if(tache.hasData){
                 return ListView.builder(
                     itemCount: tache.data.length,
                     itemBuilder: (context, position) {
-                      if (!tache.data[position].fields.isDone.booleanValue || tache.data[position].fields.isRecurrent.booleanValue) {
-                        return
-                          Card(
+                        return (
+                            Card(
                               color: tache.data[position].fields.isDone.booleanValue ? Colors.green: tache.data[position].fields.isRecurrent.booleanValue ? Colors.orange : Colors.red,
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
@@ -60,11 +58,8 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                   )
                                 ],
                               )
-                          );
-                      }
-                      else {
-
-                      }
+                          )
+                      );
                       // ignore: missing_return
                     });
               } else {
