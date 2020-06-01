@@ -1,5 +1,6 @@
 import 'package:colocgame/ui/page/RootPage.dart';
 import 'package:colocgame/ui/page/TacheDetails.dart';
+import 'package:colocgame/ui/page/TacheForm.dart';
 import "package:flutter/material.dart";
 import 'package:colocgame/ui/page/LoginPage.dart';
 
@@ -21,7 +22,8 @@ class MyApp extends StatelessWidget {
             accentColor: Colors.amberAccent
         ),
         routes: <String, WidgetBuilder>{
-          TacheDetails.routeName: (BuildContext context) => TacheDetails()
+          TacheDetails.routeName: (BuildContext context) => TacheDetails(),
+          TacheForm.routeName: (BuildContext context) => TacheForm()
         },
         debugShowCheckedModeBanner: false,
         home: new RootPage(auth: new Auth()));

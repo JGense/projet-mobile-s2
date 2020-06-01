@@ -43,7 +43,7 @@ class TacheDetails extends StatelessWidget{
                         ),
                         padding: const EdgeInsets.all(10.0),
                         child:
-                        tache.fields.isDone.booleanValue ? const Text('TACHE A REFAIRE') : const Text('TACHE EFFECTUÉ'),
+                        tache.fields.isDone.booleanValue ? const Text('TACHE A REFAIRE') : const Text('TACHE EFFECTUÉ')
                       ),
                   )
                 ]
