@@ -27,10 +27,10 @@ class _DashBoardPageState extends State<DashBoardPage> {
                 return ListView.builder(
                     itemCount: tache.data.length,
                     itemBuilder: (context, position) {
-                      if (!tache.data[position].fields.isDone.booleanValue) {
+                      if (!tache.data[position].fields.isDone.booleanValue || tache.data[position].fields.isRecurrent.booleanValue) {
                         return
                           Card(
-                              color: Colors.red,
+                              color: tache.data[position].fields.isDone.booleanValue ? Colors.green: tache.data[position].fields.isRecurrent.booleanValue ? Colors.orange : Colors.red,
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
@@ -110,7 +110,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                     autofocus: true,
                     onSubmitted: (val) {
                       addTaskItem(val);
-                      Navigator.pop(context); // Close the add todo screen
+                      Navigator.pop(context);
                     },
                     decoration: new InputDecoration(
                         hintText: 'Intitulé de la tâche',
