@@ -15,40 +15,48 @@ class TacheDetails extends StatelessWidget{
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Tache " + tache.name),
+          title: Text(tache.fields.titre.stringValue),
           centerTitle: true,
         ),
         body: Center(
             child : Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children : <Widget> [
-                  Text(tache.fields.titre.stringValue),
+                  Image.network(
+                    tache.fields.urlPhoto.stringValue,
+                  ),
+                  Divider(),
+                  Text("Description: ", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
                   Text(tache.fields.description.stringValue),
-                  RaisedButton(
-                      onPressed: () {
-                        tache.fields.isDone.booleanValue = !tache.fields.isDone.booleanValue;
-                        _tacheRepository.majTache(tache);
-                      },
-                      textColor: Colors.white,
-                      padding: const EdgeInsets.all(0.0),
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: <Color>[
-                              Color(0xFF0D47A1),
-                              Color(0xFF1976D2),
-                              Color(0xFF42A5F5),
-                            ],
-                          ),
-                        ),
-                        padding: const EdgeInsets.all(10.0),
-                        child:
-                        tache.fields.isDone.booleanValue ? const Text('TACHE A REFAIRE') : const Text('TACHE EFFECTUÉ')
-                      ),
-                  )
+                  Divider(),
+                  Text("Date de création: ", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                  Text(tache.fields.dateCreation.timestampValue.split('T')[0]),
+                  Divider(),
+                  tache.fields.isRecurrent.booleanValue ?  Text("Tâche récurrente", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),) : Text("Tâche non récurrente", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
                 ]
             )
-        )
+        ),
+        persistentFooterButtons: <Widget>[
+          ButtonTheme(
+            minWidth: 400,
+            child: RaisedButton(
+              onPressed: () {
+                tache.fields.isDone.booleanValue = !tache.fields.isDone.booleanValue;
+                _tacheRepository.majTache(tache);
+              },
+              textColor: Colors.white,
+              padding: const EdgeInsets.all(0.0),
+              child: Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.blue,
+                  ),
+                  padding: const EdgeInsets.all(10.0),
+                  child:
+                  tache.fields.isDone.booleanValue ? const Text('TACHE A REFAIRE') : const Text('TACHE EFFECTUÉE')
+              ),
+            ),
+          )
+        ],
     );
   }
 
