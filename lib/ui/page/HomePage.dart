@@ -1,5 +1,6 @@
 import 'package:colocgame/data/provider/authentication.dart';
 import 'package:colocgame/ui/page/DashBoardPage.dart';
+import 'package:colocgame/ui/page/SettingsPage.dart';
 import 'package:colocgame/ui/page/TachesPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -20,20 +21,14 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
-  static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static List<Widget> _widgetOptions = <Widget>[
-    DashBoardPage(),
-    TachesPages(),
-    Text(
-      'Index 2: Settings',
-      style: optionStyle,
-    ),
-  ];
-
   @override
   void initState() {
     super.initState();
   }
+
+  static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+
+
 
   void _onItemTapped(int index) {
     setState(() {
@@ -43,6 +38,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> _widgetOptions = <Widget>[
+      DashBoardPage(),
+      TachesPages(),
+      SettingsPage(auth: widget.auth, logoutCallback: widget.logoutCallback,)
+    ];
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('ColocGame'),
