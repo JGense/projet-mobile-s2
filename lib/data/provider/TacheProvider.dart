@@ -10,10 +10,16 @@ class TacheProvider {
     return tachesResponse;
   }
 
-  void putTache(Tache tache) {
+  void patchTache(Tache tache) {
     var dio = Dio();
     String idTache = tache.name.substring(56);
     print(tache.toJson());
     dio.patch("https://firestore.googleapis.com/v1/projects/colocgame/databases/(default)/documents/taches/"+idTache+"?updateMask.fieldPaths=isDone", data: tache.toJson());
+  }
+
+  Future<Response> postTache(Tache tache){
+    var dio = Dio();
+    print(tache);
+    return dio.post("https://firestore.googleapis.com/v1/projects/colocgame/databases/(default)/documents/taches", data: tache.toJson());
   }
 }

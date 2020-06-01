@@ -21,6 +21,10 @@ class TacheRepository {
   }
 
   void majTache(Tache tache) {
-    TacheProvider().putTache(tache);
+    TacheProvider().patchTache(tache);
+  }
+
+  Future<Response> postTache(Tache tache){
+    return TacheProvider().postTache(tache);
   }
 }

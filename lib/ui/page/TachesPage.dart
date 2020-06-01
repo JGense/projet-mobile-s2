@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class TachesPages extends StatefulWidget {
+  static const String routeName = "/tachePage";
+
   @override
   State<StatefulWidget> createState() => _tachesPageState();
 }
